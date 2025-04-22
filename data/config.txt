@@ -1,0 +1,5 @@
+processos=10
+seed=123
+algoritmo=edf
+quantum=3
+
