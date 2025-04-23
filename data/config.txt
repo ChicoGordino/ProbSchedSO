@@ -1,5 +1,5 @@
 processos=10
 seed=123
-algoritmo=edf
+algoritmo=priorityp
 quantum=3
 

@@ -36,8 +36,9 @@ void simular(Config cfg) {
 
             if (idx != processo_anterior && processo_anterior != -1 &&
                 pl.list[processo_anterior].remaining_time > 0) {
-                printf("Processo %d interrompido por processo %d em t=%d\n",
-                       pl.list[processo_anterior].id, pl.list[idx].id, clock);
+                printf("Processo %d (prioridade %d) interrompido por processo %d (prioridade %d) em t=%d\n",
+                       pl.list[processo_anterior].id, pl.list[processo_anterior].priority,
+                       pl.list[idx].id, pl.list[idx].priority, clock);
             }
 
             processo_anterior = idx;
@@ -65,10 +66,16 @@ void simular(Config cfg) {
 
         for (int i = 0; i < exec_time; i++) {
             p->remaining_time--;
-            printf("Processo %d executado de t=%d até t=%d (resta %d)\n",
-                   p->id, clock, clock + 1, p->remaining_time);
+            if (strcmp(cfg.algoritmo, "priority") == 0 || strcmp(cfg.algoritmo, "priorityp") == 0) {
+                printf("Processo %d (prioridade %d) executado de t=%d até t=%d (resta %d)\n",
+                       p->id, p->priority, clock, clock + 1, p->remaining_time);
+            } else {
+                printf("Processo %d executado de t=%d até t=%d (resta %d)\n",
+                       p->id, clock, clock + 1, p->remaining_time);
+            }
+
             clock++;
-            tempo_ocupado++;  //contabiliza tempo de CPU ocupada
+            tempo_ocupado++;
 
             if (p->remaining_time == 0) {
                 p->finish_time = clock;
@@ -90,8 +97,14 @@ void simular(Config cfg) {
         int turnaround = pl.list[i].finish_time - pl.list[i].arrival_time;
         total_wait += pl.list[i].waiting_time;
         total_turnaround += turnaround;
-        printf("P%d -> Espera: %d | Turnaround: %d\n",
-               pl.list[i].id, pl.list[i].waiting_time, turnaround);
+
+        if (strcmp(cfg.algoritmo, "priority") == 0 || strcmp(cfg.algoritmo, "priorityp") == 0) {
+            printf("P%d -> Espera: %d | Turnaround: %d | Prioridade: %d\n",
+                   pl.list[i].id, pl.list[i].waiting_time, turnaround, pl.list[i].priority);
+        } else {
+            printf("P%d -> Espera: %d | Turnaround: %d\n",
+                   pl.list[i].id, pl.list[i].waiting_time, turnaround);
+        }
     }
 
     printf("\nTempo médio de espera: %.2f\n", total_wait / (float)pl.count);
@@ -105,6 +118,7 @@ void simular(Config cfg) {
 
     libertar_processos(pl);
 }
+
 
 
 
