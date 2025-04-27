@@ -1,19 +1,23 @@
 #include "priority_preemptive.h"
 
-int priority_preemptive_next(ProcessList* pl, int clock) {
-    int idx = -1;
-    int melhor_prioridade = 1e9;
+// Função que determina o próximo processo a ser executado com base no escalonamento preemptivo por prioridade
+int priorityPreemptiveNext(ProcessList* pl, int clock) {
+    int idx = -1; 
+    int melhorPrioridade = 1e9; 
 
+    // Itera sobre a lista de processos
     for (int i = 0; i < pl->count; i++) {
-        Process* p = &pl->list[i];
+        Process* p = &pl->list[i]; // Aponta para o processo atual
 
-        if (p->arrival_time <= clock && p->remaining_time > 0) {
-            if (p->priority < melhor_prioridade) {
-                melhor_prioridade = p->priority;
-                idx = i;
+        // Verifica se o processo chegou e ainda tem tempo restante para executar
+        if (p->arrivalTime <= clock && p->remainingTime > 0) {
+            // Verifica se a prioridade do processo atual é melhor (menor valor)
+            if (p->priority < melhorPrioridade) {
+                melhorPrioridade = p->priority; 
+                idx = i; 
             }
         }
     }
 
-    return idx;
+    return idx; 
 }

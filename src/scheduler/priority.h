@@ -3,6 +3,6 @@
 
 #include "../process.h"
 
-int priority_next(ProcessList* pl, int clock);
+int priorityNext(ProcessList* pl, int clock);
 
 #endif

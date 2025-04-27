@@ -6,12 +6,12 @@ typedef struct {
     int periodo;
     int burst;
     int deadline;
-    int proxima_ativacao;
+    int proximaAtivacao;
     int restante;
-    int deadline_absoluto;
-    int instancias_executadas;
+    int deadlineAbsoluto;
+    int instanciasExecutadas;
 } ProcessoEDF;
 
-int edf_next(ProcessoEDF* lista, int n, int clock);
+int edfNext(ProcessoEDF* lista, int n, int clock);
 
 #endif

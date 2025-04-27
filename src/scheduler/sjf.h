@@ -3,6 +3,6 @@
 
 #include "../process.h"
 
-int sjf_next(ProcessList* pl, int clock);
+int sjfNext(ProcessList* pl, int clock);
 
 #endif

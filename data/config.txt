@@ -1,5 +1,14 @@
-processos=10
-seed=123
+// fcfs, sjf, rr, priority, priotiyp, rm, edf (algoritmos de escalonamento)
+
 algoritmo=priorityp
-quantum=3
+
+processos=5     // número de processos a gerar
+seed=190    // semente para gerar processos pseudo-aleatórios
+
+//Usado apenas no algoritmo RR
+
+quantum=3       // tempo máximo que um processo pode usar a CPU antes de passar para o próximo
+
+
+
 

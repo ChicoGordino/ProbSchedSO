@@ -5,7 +5,7 @@
 #include "config.h"
 
 void simular(Config cfg);
-void simular_rm();
-void simular_edf();
+void simularRM();
+void simularEDF();
 
 #endif

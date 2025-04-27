@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-Config carregar_config(const char* nome_ficheiro) {
+Config carregarConfig(const char* nome_ficheiro) {
     Config cfg;
     cfg.valido = 0;
 
@@ -16,7 +16,7 @@ Config carregar_config(const char* nome_ficheiro) {
     char linha[64];
     while (fgets(linha, sizeof(linha), f)) {
         if (strncmp(linha, "processos=", 10) == 0) {
-            cfg.num_processos = atoi(&linha[10]);
+            cfg.numProcessos = atoi(&linha[10]);
         } else if (strncmp(linha, "seed=", 5) == 0) {
             cfg.seed = atoi(&linha[5]);
         } else if (strncmp(linha, "algoritmo=", 10) == 0) {

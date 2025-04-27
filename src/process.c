@@ -5,40 +5,44 @@
 #include "utils.h"
 
 
-ProcessList gerar_processos(int n, int seed) {
+// Função para gerar uma lista de processos com base no número de processos (n) e uma seed para o gerador de números aleatórios
+ProcessList gerarProcessos(int n, int seed) {
     ProcessList pl;
-    pl.count = n;
-    pl.list = malloc(sizeof(Process) * n);
+    pl.count = n; 
+    pl.list = malloc(sizeof(Process) * n); 
 
-    srand(seed);
+    srand(seed); // Inicializa o gerador de números aleatórios com a seed fornecida
 
-    int tempo_chegada = 0;
+    int tempoChegada = 0;
     for (int i = 0; i < n; i++) {
-        pl.list[i].id = i + 1;
+        pl.list[i].id = i + 1; 
 
-        double chegada_exp = gerar_exponencial(0.5); // λ pequeno = mais espaçado
-        tempo_chegada += (int)(chegada_exp + 0.5);
-        pl.list[i].arrival_time = tempo_chegada;
+        // Gera o tempo de chegada com base numa distribuição exponencial
+        double chegadaExp = gerarExponencial(0.5); 
+        tempoChegada += (int)(chegadaExp + 0.5); 
+        pl.list[i].arrivalTime = tempoChegada;
 
-        double burst_normal = gerar_normal(6.0, 2.0);
-        int burst = (int)(burst_normal + 0.5);
-        if (burst < 1) burst = 1;
-        if (burst > 20) burst = 20; // Limitar o burst time
-        pl.list[i].burst_time = burst;
+        // Gera o burst time com base numa distribuição normal
+        double burstNormal = gerarNormal(6.0, 2.0);
+        int burst = (int)(burstNormal + 0.5); 
+        if (burst < 1) burst = 1; 
+        if (burst > 20) burst = 20; // Limita o burst time a um máximo de 20
+        pl.list[i].burstTime = burst;
 
-        pl.list[i].remaining_time = burst;
-        pl.list[i].priority = rand() % 10;
-        pl.list[i].deadline = tempo_chegada + 20 + rand() % 10;
+        pl.list[i].remainingTime = burst;
+        pl.list[i].priority = rand() % 10; 
+        pl.list[i].deadline = tempoChegada + 20 + rand() % 10; 
 
-        pl.list[i].start_time = -1;
-        pl.list[i].finish_time = -1;
-        pl.list[i].waiting_time = 0;
+        // Inicializa os tempos de início, fim e espera
+        pl.list[i].startTime = -1;
+        pl.list[i].finishTime = -1;
+        pl.list[i].waitingTime = 0;
     }
 
     return pl;
 }
 
-void libertar_processos(ProcessList pl) {
+void libertarProcessos(ProcessList pl) {
     if (pl.list != NULL) {
         free(pl.list);
     }

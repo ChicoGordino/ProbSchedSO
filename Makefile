@@ -5,6 +5,7 @@ LDFLAGS = -lm
 SRC = $(wildcard src/*.c) $(wildcard src/scheduler/*.c)
 OBJ = $(SRC:.c=.o)
 EXEC = probsched
+CONFIG = "data/config.txt"
 
 all: $(EXEC)
 
@@ -13,3 +14,6 @@ $(EXEC): $(OBJ)
 
 clean:
 	rm -f $(OBJ) $(EXEC)
+
+run: clean all
+	./$(EXEC) $(CONFIG)

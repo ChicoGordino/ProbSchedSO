@@ -7,11 +7,11 @@ typedef struct {
     int burst;
     int prioridade;
     int deadline;
-    int proxima_ativacao;
+    int proximaAtivacao;
     int restante;
-    int instancias_executadas;
+    int instanciasExecutadas;
 } ProcessoPeriodico;
 
-int rm_next(ProcessoPeriodico* lista, int n, int clock);
+int rmNext(ProcessoPeriodico* lista, int n, int clock);
 
 #endif

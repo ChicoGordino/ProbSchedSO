@@ -3,6 +3,6 @@
 
 #include "../process.h"
 
-int rr_next(ProcessList* pl, int clock, int* ultima_exec);
+int rrNext(ProcessList* pl, int clock, int* ultima_exec);
 
 #endif

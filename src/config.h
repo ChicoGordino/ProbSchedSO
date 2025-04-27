@@ -2,13 +2,13 @@
 #define CONFIG_H
 
 typedef struct {
-    int num_processos;
+    int numProcessos;
     int seed;
     char algoritmo[16];
     int quantum;
-    int valido; // 1 = ok, 0 = erro
+    int valido; 
 } Config;
 
-Config carregar_config(const char* nome_ficheiro);
+Config carregarConfig(const char* nome_ficheiro);
 
 #endif

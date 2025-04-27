@@ -5,15 +5,15 @@
 
 typedef struct {
     int id;
-    int arrival_time;    // Tempo de chegada
-    int burst_time;      // Tempo de CPU necessário
-    int remaining_time;  // Tempo restante de execução
-    int priority;        // Prioridade (menor número = maior prioridade)
-    int deadline;        // Para tempo real (EDF)
+    int arrivalTime; 
+    int burstTime;      
+    int remainingTime; 
+    int priority;       
+    int deadline;        
     
-    int start_time;      // Tempo em que começou a ser executado
-    int finish_time;     // Tempo em que terminou
-    int waiting_time;    // Tempo total de espera
+    int startTime;      
+    int finishTime;     
+    int waitingTime;    
 } Process;
 
 typedef struct {
@@ -21,7 +21,7 @@ typedef struct {
     int count;
 } ProcessList;
 
-ProcessList gerar_processos(int n, int seed);
-void libertar_processos(ProcessList pl);
+ProcessList gerarProcessos(int n, int seed);
+void libertarProcessos(ProcessList pl);
 
 #endif

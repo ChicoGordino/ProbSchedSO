@@ -1,17 +1,20 @@
 #include "fcfs.h"
 
-int fcfs_next(ProcessList* pl, int clock) {
-    int chosen = -1;
-    int earliest = 1e9;
+// Função para selecionar o próximo processo a executar usando o algoritmo de escalonamento First-Come, First-Served (FCFS)
+int fcfsNext(ProcessList* pl, int clock) {
+    int escolhido = -1; 
+    int maisCedo = 1e9; 
 
     for (int i = 0; i < pl->count; i++) {
-        if (pl->list[i].remaining_time > 0 && pl->list[i].arrival_time <= clock) {
-            if (pl->list[i].arrival_time < earliest) {
-                earliest = pl->list[i].arrival_time;
-                chosen = i;
+        // Verificar se o processo tem tempo restante e já chegou até o tempo atual do relógio
+        if (pl->list[i].remainingTime > 0 && pl->list[i].arrivalTime <= clock) {
+            // Se o processo chegou mais cedo do que o atual mais cedo, atualizar o processo escolhido
+            if (pl->list[i].arrivalTime < maisCedo) {
+                maisCedo = pl->list[i].arrivalTime; 
+                escolhido = i; 
             }
         }
     }
 
-    return chosen;
+    return escolhido; 
 }

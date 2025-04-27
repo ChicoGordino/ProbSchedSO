@@ -13,7 +13,7 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    Config cfg = carregar_config(argv[1]);
+    Config cfg = carregarConfig(argv[1]);
     if (!cfg.valido) {
         printf("Erro ao carregar configuração.\n");
         return 1;
@@ -21,14 +21,14 @@ int main(int argc, char* argv[]) {
 
     // Se for o algoritmo RM (Rate Monotonic), chamamos função especial
     if (strcmp(cfg.algoritmo, "rm") == 0) {
-        simular_rm(); // Não usa cfg porque a RM é baseada em tarefas fixas
-        return 0;
+        simularRM(); 
+        
     }
 
     // Se for o algoritmo EDF (Earliest Deadline First), chamamos função especial
     else if (strcmp(cfg.algoritmo, "edf") == 0) {
-        simular_edf();
-        return 0;
+        simularEDF();
+        
     }
         
     else {

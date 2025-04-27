@@ -3,6 +3,6 @@
 
 #include "../process.h"
 
-int priority_preemptive_next(ProcessList* pl, int clock);
+int priorityPreemptiveNext(ProcessList *pl, int clock);
 
 #endif
